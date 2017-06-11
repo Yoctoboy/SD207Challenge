@@ -1,0 +1,2 @@
+Score 1 : 44.96 - MFCC (n_fft=256, n_mfcc=10) + Basic Reglog
+Score 2 : 28 - MFCC (n_fft=256, n_mfcc=20) + KNN(n_neighbors = 15)
