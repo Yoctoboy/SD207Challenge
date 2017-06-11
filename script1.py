@@ -10,7 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 import librosa
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, Lasso, ElasticNet
+from sklearn.neural_network import MLPClassifier
 from sklearn import preprocessing
 
 FILEROOT = "audio/"
@@ -40,7 +41,7 @@ labels = {'beach': 0,
 for i, afile in train_files.iterrows():
 
     y, sr = librosa.load(str(afile.file), sr=None)
-    mfcc = librosa.feature.mfcc(y=y, n_fft=256, hop_length=512, n_mfcc=10)
+    mfcc = librosa.feature.mfcc(y=y, n_fft=256, hop_length=512, n_mfcc=20)
     # plt.figure(figsize=(10, 4))
     # librosa.display.specshow(librosa.power_to_db(np.abs(mfcc), ref=np.max),
     #                         y_axis='mel', x_axis='time')
@@ -57,7 +58,7 @@ for i, afile in train_files.iterrows():
 for i, afile in test_files.iterrows():
 
     y, sr = librosa.load(str(afile.file), sr=None)
-    mfcc = librosa.feature.mfcc(y=y, n_fft=256, hop_length=512, n_mfcc=10)
+    mfcc = librosa.feature.mfcc(y=y, n_fft=256, hop_length=512, n_mfcc=20)
     # plt.figure(figsize=(10, 4))
     # librosa.display.specshow(librosa.power_to_db(np.abs(mfcc), ref=np.max),
     #                         y_axis='mel', x_axis='time')
@@ -66,16 +67,14 @@ for i, afile in test_files.iterrows():
         X_test = [mfcc]
     else:
         X_test += [mfcc]
-    if (i % 10 == 0 or i == test_files.shape[0]):
-        print("Train : {0}/{1}".format(i, test_files.shape[0]))
+    if (i+1 % 10 == 0 or i+1 == test_files.shape[0]):
+        print("Test : {0}/{1}".format(i+1, test_files.shape[0]))
 
 X_tot = np.concatenate([X_train, X_test])
 preprocessing.scale(X_tot)
-print(len(X_train),len(X_test))
 X_train = X_tot[:len(X_train)]
 X_test = X_tot[len(X_train):]
-print(len(X_train), len(X_test))
-clf = LogisticRegression()
+clf = Lasso(max_iter=5000)
 clf.fit(X_train,y_train)
 y_pred = clf.predict(X_test)
 np.savetxt("y_pred.txt", y_pred, fmt="%i")
