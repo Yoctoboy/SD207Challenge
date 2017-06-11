@@ -3,3 +3,4 @@
 Contributors :
 
 - Alexis Reymann
+- Antoine Sueur
