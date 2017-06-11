@@ -13,6 +13,7 @@ import librosa
 from sklearn.linear_model import LogisticRegression, Lasso, ElasticNet
 from sklearn.neural_network import MLPClassifier
 from sklearn import preprocessing
+from sklearn.neighbors import KNeighborsClassifier
 
 FILEROOT = "audio/"
 
@@ -52,8 +53,8 @@ for i, afile in train_files.iterrows():
     else:
         X_train += [mfcc]
         y_train += [labels[afile.label]]
-    if (i%10==0 or i==train_files.shape[0]):
-        print("Train : {0}/{1}".format(i, train_files.shape[0]))
+    if ((i+1) % 10 == 0 or i+1 == train_files.shape[0]):
+        print("Train : {0}/{1}".format(i+1, train_files.shape[0]))
 
 for i, afile in test_files.iterrows():
 
@@ -67,14 +68,14 @@ for i, afile in test_files.iterrows():
         X_test = [mfcc]
     else:
         X_test += [mfcc]
-    if (i+1 % 10 == 0 or i+1 == test_files.shape[0]):
+    if ((i+1) % 10 == 0 or i+1 == test_files.shape[0]):
         print("Test : {0}/{1}".format(i+1, test_files.shape[0]))
 
 X_tot = np.concatenate([X_train, X_test])
 preprocessing.scale(X_tot)
 X_train = X_tot[:len(X_train)]
 X_test = X_tot[len(X_train):]
-clf = Lasso(max_iter=5000)
+clf = KNeighborsClassifier(n_neighbors = 15)
 clf.fit(X_train,y_train)
 y_pred = clf.predict(X_test)
-np.savetxt("y_pred.txt", y_pred, fmt="%i")
+np.savetxt("y_pred.txt", y_pred, fmt="%d")
