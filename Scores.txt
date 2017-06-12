@@ -1,2 +1,6 @@
 Score 1 : 44.96 - MFCC (n_fft=256, n_mfcc=10) + Basic Reglog
 Score 2 : 28 - MFCC (n_fft=256, n_mfcc=20) + KNN(n_neighbors = 15)
+Score 3 : 53.02 - MFCC (n_fft=512, n_mfcc=40) + Basic ExtraTrees
+Score 4 : 57.05 - MFCC (n_fft=512, n_mfcc=40) + Keras
+Score 5 : 59.73 - Full Librosa features + Keras
+Score 6 : 73.15 - Full Librosa features + RegLog
