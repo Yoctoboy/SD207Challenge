@@ -4,3 +4,6 @@ Score 3 : 53.02 - MFCC (n_fft=512, n_mfcc=40) + Basic ExtraTrees
 Score 4 : 57.05 - MFCC (n_fft=512, n_mfcc=40) + Keras
 Score 5 : 59.73 - Full Librosa features + Keras
 Score 6 : 73.15 - Full Librosa features + RegLog
+Score 7 : 71.14 - Full Librosa features + Keras
+Score 8 : 71.18 - XGBoost 
+Score 9 : 78.5 Majority vote between XGBoost/NN/Reg results
