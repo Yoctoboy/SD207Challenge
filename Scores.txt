@@ -6,4 +6,6 @@ Score 5 : 59.73 - Full Librosa features + Keras
 Score 6 : 73.15 - Full Librosa features + RegLog
 Score 7 : 71.14 - Full Librosa features + Keras
 Score 8 : 71.18 - XGBoost 
-Score 9 : 78.5 Majority vote between XGBoost/NN/Reg results
+Score 9 : 78.5 - Majority vote between XGBoost/NN/Reg results
+Score 10: 67 - SVM with RBF kernel (gaussian)
+Score 11: 56 - SVM with sigmoid kernel
