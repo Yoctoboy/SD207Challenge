@@ -9,3 +9,5 @@ Score 8 : 71.18 - XGBoost
 Score 9 : 78.5 - Majority vote between XGBoost/NN/Reg results
 Score 10: 67 - SVM with RBF kernel (gaussian)
 Score 11: 56 - SVM with sigmoid kernel
+Score 12 : Mix SVM/Reglog/XGBoost 80.5
+Score 13 : 75.8 NN Divided data 
