@@ -7,3 +7,7 @@ Score 6 : 73.15 - Full Librosa features + RegLog
 Score 7 : 71.14 - Full Librosa features + Keras
 Score 8 : 71.18 - XGBoost 
 Score 9 : 78.5 Majority vote between XGBoost/NN/Reg results
+Score 10: 77.1 - XGBoost with 150 MFCC
+Score 10 : 71.14 SVM MFCC 150
+Score 12 : Mix SVM/Reglog/XGBoost 80.5
+Score 13 : 75.8 NN Divided data 
